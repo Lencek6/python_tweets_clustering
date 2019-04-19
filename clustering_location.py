@@ -31,14 +31,18 @@ def populate_tweet_df(tweets):
     # clustering dataFrame on 8 clusters using Kmeans++ init for centroid
     test_cluster = KMeans(n_clusters=8)
     test_cluster.fit(df)
-    color1 = np.array(['red', 'green', 'blue', "yellow", "purple", "orange", "black", "brown"])
+    color1 = np.array(['red', 'green', 'blue', "yellow", "purple", "orange", "gray", "brown"])
 
     # plotting results
     plt.scatter(df['lat'], df['lon'], c=color1[test_cluster.labels_])
-    plt.xlabel('Latitude')
-    plt.ylabel('Longitude')
-    plt.show()
+    plt.xlabel('zemljepisna dolžina')
+    plt.ylabel('zemljepisna širina')
 
+    # plotting centroids
+    centers = np.array(test_cluster.cluster_centers_)
+    plt.scatter(centers[:, 1], centers[:, 0], marker="*", color='black', s=100)
+    print(centers)
+    plt.show()
 
 if __name__ == '__main__':
     main()

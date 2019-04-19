@@ -31,6 +31,11 @@ def populate_tweet_df(tweets):
     plt.scatter(df['followers_count'], df['friends_count'], c=color1[test_cluster.labels_])
     plt.xlabel('Followers count')
     plt.ylabel('Friends count')
+
+    # plotting centroids
+    centers = np.array(test_cluster.cluster_centers_)
+    plt.scatter(centers[:, 0], centers[:, 1], marker="*", color='black', s=100)
+    print(centers)
     plt.show()
 
 
